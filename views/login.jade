@@ -1,0 +1,35 @@
+extend layout
+
+block content
+  p
+  h2 Hello #{username}!
+ 
+  p
+  #jqid
+      p
+      | This is an empty div!
+  form(action="about", method="get")
+    select
+      option(selected=true) --Please select a project--
+      for prj in projects
+        option #{prj}
+    p
+    |    
+    | Please specify a file or a set of files:
+
+    #file-uploader
+      noscript
+        p Please enable JavaScript to use file uploader.
+      script
+        function createUploader(){
+          var uploader = new qq.FileUploader({element: document.getElementById('file-uploader'), action: '/about', allowedExtensions: ['png'], disableCancelForFormUploads : false, onComplete: function(id, fileName, responseJSON) {
+                $('input[name=vcf_filename]').val(fileName);
+                $('input[name=vcf_md5]').val(responseJSON.MD5)},debug: true});
+          }
+          window.onload = createUploader;
+    p
+    
+
+    input(type='hidden', name='vcf_filename')
+    input(type='hidden', name='vcf_md5')    
+

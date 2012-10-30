@@ -1,0 +1,24 @@
+extend layout
+
+block content
+  p
+  form(action="/login", method="post")
+    div
+      | Username: 
+      input(id="username", type="text", name="username")
+
+      | Password: 
+      input(id="pass", type="password", name="password")
+      input(id="submit", type="submit", value="Log in")
+
+
+block sidebar
+  .widget
+    h1 Info
+    p
+      | This tool is meant to facilitate
+      | the upload of files into iRODS data management system.
+    
+    p
+      | Vivamus hendrerit arcu sed erat molestie
+      | vehicula.
